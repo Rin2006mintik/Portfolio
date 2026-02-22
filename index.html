@@ -222,5 +222,24 @@
   modal.addEventListener('click', e => { if(e.target === modal) modal.style.display = 'none'; });
 </script>
 
+  <script>
+function openEmail(e) {
+  e.preventDefault();
+
+  var email = "korovinaaleksandra38@gmail.com";
+
+  // пробуем mailto
+  window.location.href = "mailto:" + email;
+
+  // если через 1 секунду ничего не открылось — Gmail web
+  setTimeout(function() {
+    window.open(
+      "https://mail.google.com/mail/?view=cm&fs=1&to=" + email,
+      "_blank"
+    );
+  }, 1000);
+}
+</script>
+
 </body>
 </html> 
