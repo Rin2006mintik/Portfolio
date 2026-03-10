@@ -569,6 +569,11 @@ html { scroll-behavior: smooth; }
         padding-left: 10%;
     }
 
+  .form{
+        
+        background-attachment: scroll;
+    }
+
 }
 
 @media (max-width: 575px){
