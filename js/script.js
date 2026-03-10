@@ -1,36 +1,44 @@
-// Navbar hide/show
-const sections = document.querySelectorAll('#about_1, #works_1, #form_1, #footer__page_1');
-const navbar = document.querySelector('#hideMe');
-const visibleSections = new Set();
+// navbar hide/show
+  document.addEventListener("DOMContentLoaded", function() {
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting) visibleSections.add(entry.target);
-    else visibleSections.delete(entry.target);
-  });
-  navbar.classList.toggle('hidden', visibleSections.size > 0);
-}, {
-  threshold: 0,
-  rootMargin: "-15% 0px -125% 0px"
+  const sections = document.querySelectorAll('#about_1, #works_1, #form_1, #footer__page_1');
+  const element = document.querySelector('#hideMe');
+  const visibleSections = new Set();
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) visibleSections.add(entry.target);
+      else visibleSections.delete(entry.target);
+    });
+
+    if(element){
+      element.classList.toggle('hidden', visibleSections.size > 0);
+    }
+
+  }, { threshold: 0, rootMargin: "-20% 0px -130% 0px" });
+
+  sections.forEach(section => observer.observe(section));
+
 });
 
-sections.forEach(section => observer.observe(section));
+  // photo modal
+  const galleryImages = document.querySelectorAll('.container-fluid .works__block img');
+  const modal = document.getElementById('imageModal');
+  const modalImg = document.getElementById('modalImg');
+  const modalClose = modal.querySelector('.modal-close');
 
-// Modal for works images
-const galleryImages = document.querySelectorAll('.works__block img');
-const modal = document.getElementById('imageModal');
-const modalImg = document.getElementById('modalImg');
-const modalClose = document.querySelector('.modal-close');
-
-galleryImages.forEach(img => {
-  img.style.cursor = 'pointer';
-  img.addEventListener('click', e => {
-    e.preventDefault();
-    e.stopPropagation();
-    modal.style.display = 'flex';
-    modalImg.src = img.src;
+  galleryImages.forEach(img => {
+    img.style.cursor = 'pointer';
+    img.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      modal.style.display = 'flex';
+      modalImg.src = img.src;
+    });
   });
-});
+
+  modalClose.addEventListener('click', () => { modal.style.display = 'none'; });
+  modal.addEventListener('click', e => { if(e.target === modal) modal.style.display = 'none'; });
 
 modalClose.addEventListener('click', () => { modal.style.display = 'none'; });
 modal.addEventListener('click', e => { if(e.target === modal) modal.style.display = 'none'; });
