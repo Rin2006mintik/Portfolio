@@ -11,11 +11,14 @@
       else visibleSections.delete(entry.target);
     });
 
-    if(element){
+    if (element) {
       element.classList.toggle('hidden', visibleSections.size > 0);
     }
 
-  }, { threshold: 0, rootMargin: "-20% 0px -130% 0px" });
+  }, { 
+    threshold: 0,
+    rootMargin: "-20% 0px -80% 0px"
+  });
 
   sections.forEach(section => observer.observe(section));
 
