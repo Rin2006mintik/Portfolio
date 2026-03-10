@@ -200,9 +200,11 @@
 </div>
 
 <script src="js/bootstrap.js"></script>
-<script src="js/script.js"></script>
+<!-- <script src="js/script.js"></script> -->
 <script>
   // navbar hide/show
+  document.addEventListener("DOMContentLoaded", function() {
+
   const sections = document.querySelectorAll('#about_1, #works_1, #form_1, #footer__page_1');
   const element = document.querySelector('#hideMe');
   const visibleSections = new Set();
@@ -212,10 +214,16 @@
       if (entry.isIntersecting) visibleSections.add(entry.target);
       else visibleSections.delete(entry.target);
     });
-    element.classList.toggle('hidden', visibleSections.size > 0);
-  }, { threshold: 0, rootMargin: "-15% 0px -125% 0px" });
+
+    if(element){
+      element.classList.toggle('hidden', visibleSections.size > 0);
+    }
+
+  }, { threshold: 0, rootMargin: "-100px 0px -300px 0px" });
 
   sections.forEach(section => observer.observe(section));
+
+});
 
   // photo modal
   const galleryImages = document.querySelectorAll('.container-fluid .works__block img');
