@@ -42,3 +42,26 @@
 
 modalClose.addEventListener('click', () => { modal.style.display = 'none'; });
 modal.addEventListener('click', e => { if(e.target === modal) modal.style.display = 'none'; });
+
+// MAIL
+
+function openEmail(e) {
+  e.preventDefault();
+
+  var email = "korovinaaleksandra38@gmail.com";
+
+  // Определяем мобильное устройство
+  var isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+  if (isMobile) {
+    // На телефоне открываем почтовое приложение
+    window.location.href = "mailto:" + email;
+  } else {
+    // На ПК открываем Gmail web
+    window.open(
+      "https://mail.google.com/mail/?view=cm&fs=1&to=" + email,
+      "_blank",
+      "noopener,noreferrer"
+    );
+  }
+}
